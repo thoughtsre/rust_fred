@@ -28,10 +28,9 @@ struct SeriesJSON {
     seriess: Vec<SeriesInfo>
 }
 
-#[tokio::main]
-async fn main() {
+fn main() {
     
-    let client = reqwest::Client::new();
+    let client = reqwest::blocking::Client::new();
 
     let API_KEY = fs::read_to_string("API_KEY.txt").expect("Something wrong reading the file!");
 
@@ -40,12 +39,11 @@ async fn main() {
     let response = client
         .get(URL)
         .send()
-        .await
         .unwrap();
 
     match response.status() {
         reqwest::StatusCode::OK => {
-            match response.json::<SeriesJSON>().await {
+            match response.json::<SeriesJSON>() {
                 Ok(json) => println!("{:?}", json),
                 Err(_) => panic!("Error!")
             }
