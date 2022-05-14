@@ -24,7 +24,7 @@ impl FreddoClient {
 
         let api_key = match env::var("FRED_API_KEY") {
             Ok(key) => key,
-            Err(_) => return Err("No API Key Found! Please provide one.".to_string()),
+            Err(_) => return Err("No API Key Found! Please set FRED_API_KEY env var.".to_string()),
         };
 
         Ok(Self {
