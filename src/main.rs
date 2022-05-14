@@ -1,58 +1,44 @@
-use reqwest;
-use serde::{Serialize, Deserialize};
+use std::env;
 use std::fs;
-
-#[derive(Serialize, Deserialize, Debug)]
-struct SeriesInfo {
-    id: String,
-    realtime_start: String,
-    realtime_end: String,
-    title: String,
-    observation_start: String,
-    observation_end: String,
-    frequency: String,
-    frequency_short: String,
-    units: String,
-    units_short: String,
-    seasonal_adjustment: String,
-    seasonal_adjustment_short: String,
-    last_updated: String,
-    popularity: i32,
-    notes: String
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct SeriesJSON {
-    realtime_start: String,
-    realtime_end: String,
-    seriess: Vec<SeriesInfo>
-}
+use freddo::{data, search, info};
+use freddo::client::FreddoClient;
+use freddo::base::{QueryTraits};
 
 fn main() {
+
+    let api_key = fs::read_to_string("API_KEY.txt").expect("Something wrong reading the file!");
+
+    env::set_var("FRED_API_KEY", api_key);
+
+    let client = FreddoClient::new().unwrap();
+
+    // let mut query = data::Query::new();
     
-    let client = reqwest::blocking::Client::new();
+    // query.series_id("GNPCA".to_string());
 
-    let API_KEY = fs::read_to_string("API_KEY.txt").expect("Something wrong reading the file!");
+    // let result = query.execute(&client).unwrap();
 
-    let URL = format!("https://api.stlouisfed.org/fred/series?series_id=GNPCA&api_key={}&file_type=json", API_KEY);
+    // result.write_to_file("test.json".to_string());
 
-    let response = client
-        .get(URL)
-        .send()
-        .unwrap();
+    // let result = client.get_data(query);
 
-    match response.status() {
-        reqwest::StatusCode::OK => {
-            match response.json::<SeriesJSON>() {
-                Ok(json) => println!("{:?}", json),
-                Err(_) => panic!("Error!")
-            }
-        }
+    // println!("{:?}", result.unwrap());
 
-        _ => {
-            println!("Something went wrong.")
-        }
-    }
+    // let mut query = search::Query::new();
+
+    // query.set_search_text(vec!["GDP".to_owned(), "energy".to_owned()])
+    //     .set_limit(10);
+
+    let mut query = info::Query::new();
+    query.set_series_id("GNPCA".to_string())
+    .set_limit(10);
+
+    let result = query.execute(&client).unwrap();
+
+    result.print_value();
+
+    result.write_to_file("test.json".to_string());
 
     
 }
+

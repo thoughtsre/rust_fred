@@ -110,6 +110,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "freddo"
+version = "0.1.0"
+dependencies = [
+ "reqwest",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "futures-channel"
 version = "0.3.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -557,15 +566,6 @@ dependencies = [
  "wasm-bindgen-futures",
  "web-sys",
  "winreg",
-]
-
-[[package]]
-name = "rust_fred"
-version = "0.1.0"
-dependencies = [
- "reqwest",
- "serde",
- "serde_json",
 ]
 
 [[package]]
