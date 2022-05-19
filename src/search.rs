@@ -232,6 +232,7 @@ struct SeriesInfo {
     notes: String
 }
 
+///Data type describing the response of the REST API
 #[derive(Serialize, Deserialize, Debug)]
 pub struct SearchJSON {
     realtime_start: String,

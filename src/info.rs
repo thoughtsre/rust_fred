@@ -224,6 +224,7 @@ impl QueryTraits for Query {
     }
 }
 
+///Data type describing the response of the REST API
 #[derive(Serialize, Deserialize, Debug)]
 struct SeriesInfo {
     realtime_start: String,

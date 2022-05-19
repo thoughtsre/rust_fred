@@ -235,6 +235,7 @@ fn value_as_float<'de, D: Deserializer<'de>>(deserializer: D) -> Result<f64, D::
     })
 }
 
+///Data type describing the response of the REST API
 #[derive(Serialize, Deserialize, Debug)]
 pub struct SeriesJSON {
     realtime_start: String,
