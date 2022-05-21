@@ -1,8 +1,11 @@
 [package]
 name = "freddo"
+description = "An opinionated library to access the Federal Reserve of St Louis data API"
 version = "0.1.0"
 license = "MIT"
 edition = "2021"
+repository = "https://gitlab.com/bzai-public/rust_fred"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
