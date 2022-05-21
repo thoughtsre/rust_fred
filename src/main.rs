@@ -2,6 +2,7 @@ use freddo::{data, search, info};
 use freddo::client::FreddoClient;
 use freddo::base::{QueryTraits};
 
+/// This function searches for info related to `GNPCA`
 fn main() {
 
     let client = FreddoClient::new().unwrap();
