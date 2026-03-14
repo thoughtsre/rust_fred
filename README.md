@@ -1,3 +1,5 @@
+> **This repo has been migrated to [GitHub](https://github.com/thoughtsre/rust_fred).**
+
 # Freddo
 
 This is an opinionated library for accessing the Federal Reserve of St Louis data API. It may not implement all the functionalities of the API.
